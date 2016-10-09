@@ -26,7 +26,7 @@
       <td>{{ profile.user.last_name }}</td>
       <td>{{ profile.user.email }}</td>
       <td>
-        <a class="btn btn-primary" href="#">Editar</a>
+        <a class="btn btn-primary" href="{% url 'administrador:profile_editar' profile.pk %}">Editar</a>
         <a class="btn btn-primary" href="#">Eliminar</a>
       </td>
     </tr>

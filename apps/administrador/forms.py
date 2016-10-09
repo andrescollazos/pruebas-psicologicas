@@ -26,7 +26,7 @@ class UserForm(forms.ModelForm):
             'email': forms.EmailInput(attrs = {'class':'form-control'}),
             'first_name': forms.TextInput(attrs = {'class':'form-control'}),
             'last_name': forms.TextInput(attrs = {'class':'form-control'}),
-            'password' : forms.PasswordInput(attrs = {'class':'form-control'}),
+            'password' : forms.TextInput(attrs = {'class':'form-control'}),
         }
 
 TIPO_DOCUMENTO = (
