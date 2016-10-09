@@ -9,14 +9,14 @@ from django.dispatch import receiver
 
 # CLASE USUARIO
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
     TIPO_DOCUMENTO = (
         ('CC', 'Cedula de Ciudadania'),
         ('TI', 'Tarjeta de Identidad'),
         ('RI', 'Registro Civil')
     )
     tipoDocumento = models.CharField(max_length = 2, choices = TIPO_DOCUMENTO)
-    docIdentidad = models.CharField(max_length = 10, unique = True)
+    docIdentidad = models.CharField(max_length = 10, primary_key = True)#, unique = True)
     fechaDeNacimiento = models.DateField(null = True, blank = True)
     direccion = models.CharField(max_length = 100)
     telefono = models.CharField(max_length = 10, blank = True)
