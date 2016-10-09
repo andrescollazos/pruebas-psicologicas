@@ -24,6 +24,11 @@ class PsicologoList(ListView):
     template_name = 'administrador/psicologo_list.html'
 
 class ProfileCrear(CreateView):
+    # ELIMINAR CAMPOS NULL PARA NO GENERAR PROBLEMAS
+    p = Profile.objects.filter(fechaDeNacimiento = None)
+    #print "El objeto NUll is: ", p
+    p.delete()
+
     model = Profile
     template_name = 'administrador/profile_form.html'
     form_class = ProfileForm
@@ -54,8 +59,8 @@ class ProfileEditar(UpdateView):
     model = Profile
     second_model = User
     template_name = 'administrador/profile_editar_form.html'
-    form_class = ProfileForm
-    second_form_class = UserForm
+    form_class = ProfileEditarForm
+    second_form_class = UserEditarForm
     success_url = reverse_lazy('administrador:profile_listar')
 
     def get_context_data(self, **kwargs):

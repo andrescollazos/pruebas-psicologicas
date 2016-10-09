@@ -18,18 +18,20 @@
   <tbody>
     {% if object_list %}
     {% for profile in object_list %}
-    <tr>
-      <td>{{ profile.user.id }}</td>
-      <td>{{ profile.user.username }}</td>
-      <td>{{ profile.docIdentidad }}</td>
-      <td>{{ profile.user.first_name }}</td>
-      <td>{{ profile.user.last_name }}</td>
-      <td>{{ profile.user.email }}</td>
-      <td>
-        <a class="btn btn-primary" href="{% url 'administrador:profile_editar' profile.pk %}">Editar</a>
-        <a class="btn btn-primary" href="#">Eliminar</a>
-      </td>
-    </tr>
+      {% if profile.docIdentidad %}
+        <tr>
+          <td>{{ profile.user.id }}</td>
+          <td>{{ profile.user.username }}</td>
+          <td>{{ profile.docIdentidad }}</td>
+          <td>{{ profile.user.first_name }}</td>
+          <td>{{ profile.user.last_name }}</td>
+          <td>{{ profile.user.email }}</td>
+          <td>
+            <a class="btn btn-primary" href="{% url 'administrador:profile_editar' profile.pk %}">Editar</a>
+            <a class="btn btn-primary" href="#">Eliminar</a>
+          </td>
+        </tr>
+      {% endif %}
     {% endfor %}
 
     {% else %}
