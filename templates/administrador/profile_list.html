@@ -1,0 +1,41 @@
+{% extends 'base/base.html'%}
+
+{% block content %}
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td>#</td>
+      <td>Nombre de Usuario</td>
+      <td>Nombres</td>
+      <td>Apellidos</td>
+      <td>Email</td>
+      <td>Acciones</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% if object_list %}
+    {% for profile in object_list %}
+    <tr>
+      <td>{{ profile.user.id }}</td>
+      <td>{{ profile.username }}</td>
+      <td>{{ profile.first_name }}</td>
+      <td>{{ profile.last_name }}</td>
+      <td>{{ profile.email }}</td>
+      <td>
+        <a class="btn btn-primary" href="#">Editar</a>
+        <a class="btn btn-primary" href="#">Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+
+    {% else %}
+    <h1>NO HAY REGISTROS DE PROFILE</h1>
+
+    {% endif %}
+  </tbody>
+</table>
+
+
+{% endblock %}

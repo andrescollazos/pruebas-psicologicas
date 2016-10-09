@@ -45,11 +45,17 @@ class Institucion(models.Model):
     paginaWeb = models.URLField(max_length = 200)
     direccion = models.CharField(max_length = 100)
 
+    def __str__(self):
+        return self.nombre
+
 # CLASE PSICOLOGO
 class Psicologo(models.Model):
     user = models.ForeignKey(Profile, on_delete = models.CASCADE)
     titulo = models.CharField(max_length = 100) # Titulo Universitario
-    institucion = models.ForeignKey(Institucion, on_delete=models.CASCADE)
+    institucion = models.ForeignKey(Institucion, on_delete=models.CASCADE, null = True)
+
+    #def __str__(self):
+    #    return self.user
 
 # CLASE GRUPO
 #class Grupo(models.Model):
@@ -67,4 +73,4 @@ class Grupo(models.Model):
 class Estudiante(models.Model):
     user = models.ForeignKey(Profile, on_delete = models.CASCADE)
     #institucion = models.ForeignKey(Institucion) # Una institucion tiene varios alumnos
-    grupo = models.ForeignKey(Grupo, on_delete = models.CASCADE) # Un grupo tiene varios alumnos
+    grupo = models.ForeignKey(Grupo, on_delete = models.CASCADE, null = True) # Un grupo tiene varios alumnos

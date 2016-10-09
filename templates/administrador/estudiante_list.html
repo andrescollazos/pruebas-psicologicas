@@ -1,0 +1,43 @@
+{% extends 'base/base.html'%}
+
+{% block content %}
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td>Id Usuario</td>
+      <td>Nombres</td>
+      <td>Apellidos</td>
+      <td>Email</td>
+      <td>Documento de Identidad</td>
+      <td>Fecha de Nacimiento</td>
+      <td>Acciones</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% if object_list %}
+    {% for estudiante in object_list %}
+    <tr>
+      <td>{{ estudiante.user.user.id }}</td>
+      <td>{{ estudiante.user.user.first_name }}</td>
+      <td>{{ estudiante.user.user.last_name }}</td>
+      <td>{{ estudiante.user.user.email }}</td>
+      <td>{{ estudiante.user.docIdentidad }}</td>
+      <td>{{ estudiante.user.fechaDeNacimiento }}</td>
+      <td>
+        <a class="btn btn-primary" href="#">Editar</a>
+        <a class="btn btn-primary" href="#">Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+
+    {% else %}
+    <h1>NO HAY REGISTROS DE ESTUDIANTES</h1>
+
+    {% endif %}
+  </tbody>
+</table>
+
+
+{% endblock %}
