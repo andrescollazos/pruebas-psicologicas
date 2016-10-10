@@ -2,10 +2,11 @@
 
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from models import *
 
 # FORMULARIOS PARA LA CREACION DE PROFILES:
-class UserForm(forms.ModelForm):
+class UserForm(UserCreationForm):#forms.ModelForm):
     class Meta:
         model = User
         fields = [
@@ -13,21 +14,18 @@ class UserForm(forms.ModelForm):
             'email',
             'first_name',
             'last_name',
-            'password',
         ]
         labels = {
             'username': 'Nombre de Usuario',
             'email': 'Correo electronico',
             'first_name': 'Nombres',
             'last_name': 'Apellidos',
-            'password': 'Contraseña',
         }
         widgets = {
             'username': forms.TextInput(attrs = {'class':'form-control'}),
             'email': forms.EmailInput(attrs = {'class':'form-control'}),
             'first_name': forms.TextInput(attrs = {'class':'form-control'}),
             'last_name': forms.TextInput(attrs = {'class':'form-control'}),
-            'password' : forms.TextInput(attrs = {'class':'form-control'}),
         }
 
 TIPO_DOCUMENTO = (

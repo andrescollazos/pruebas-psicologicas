@@ -12,6 +12,11 @@ def index_administrador(request):
     return render(request, 'administrador/index.html')
 
 class ProfileList(ListView):
+    # ELIMINAR CAMPOS NULL PARA NO GENERAR PROBLEMAS
+    p = Profile.objects.filter(fechaDeNacimiento = None)
+    #print "El objeto NUll is: ", p
+    #print "elimino: ", p.delete()
+
     model = Profile
     template_name = 'administrador/profile_list.html'
 
@@ -82,9 +87,9 @@ class ProfileEditar(UpdateView):
         user = self.second_model.objects.get(id = profile.user_id)
 
         form = self.form_class(request.POST, instance = profile)
-        print "FORM: ", form
+        #print "FORM: ", form
         form2 = self.second_form_class(request.POST, instance = user)
-        print "\n\nFORM2", form2
+        #print "\n\nFORM2", form2
 
         if form.is_valid() and form2.is_valid():
             form.save()
