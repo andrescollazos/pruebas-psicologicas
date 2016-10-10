@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from django.core.urlresolvers import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -129,4 +130,14 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-AUTH_PROFILE_MODULE = "administrador.Profile"
+#AUTH_PROFILE_MODULE = "administrador.Profile"
+
+LOGIN_REDIRECT_URL = reverse_lazy('administrador:index')
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'pipecollazos1@gmail.com'
+EMAIL_HOST_PASSWORD = 'pipe3445038'
+EMAIL_BACKENDS = 'django.core.mail.backends.smtp.EmailBackend'
