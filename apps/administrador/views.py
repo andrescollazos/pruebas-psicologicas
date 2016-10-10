@@ -93,3 +93,16 @@ class ProfileEditar(UpdateView):
         else:
             #print "ALGO FALLO"
             return HttpResponseRedirect(self.get_success_url())
+
+
+# NO SE HARA USO DE LA CLASE DeleteView YA QUE SOLO QUEEREMOS HACER UN BORRADO LOGICO:
+# SE ELIMINA DE LA TABLA DE Profile, PERO NO DE LA TABLA DE User, EN DICHA TABLA SOLO
+# SE PONE COMO INACTIVA LA CUENTA
+
+def ProfileEliminar(request, pk):
+    profile = Profile.objects.get(docIdentidad = pk)
+    if request.method == 'POST':
+        profile.user.is_active = 0
+        profile.delete()
+        return HttpResponseRedirect(reverse_lazy('administrador:profile_listar'))
+    return render(request, 'administrador/profile_delete.html', {'profile':profile})

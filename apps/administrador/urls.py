@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^listarPsicologo$', PsicologoList.as_view(), name = 'psicologo_listar'),
     url(r'^crearProfile$', ProfileCrear.as_view(), name = 'profile_crear'),
     url(r'^editarprofile/(?P<pk>\d+)$', ProfileEditar.as_view(), name = 'profile_editar'),
+    url(r'^eliminar/(?P<pk>\d+)$', ProfileEliminar, name='profile_eliminar')
     #url(r'^nuevo$', profile_create, name = 'profile_create'),
 ]

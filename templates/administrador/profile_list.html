@@ -28,7 +28,7 @@
           <td>{{ profile.user.email }}</td>
           <td>
             <a class="btn btn-primary" href="{% url 'administrador:profile_editar' profile.pk %}">Editar</a>
-            <a class="btn btn-primary" href="#">Eliminar</a>
+            <a class="btn btn-primary" href="{% url 'administrador:profile_eliminar' profile.pk %}">Eliminar</a>
           </td>
         </tr>
       {% endif %}
