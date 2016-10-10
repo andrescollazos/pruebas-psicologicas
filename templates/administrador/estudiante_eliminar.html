@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block navbar %}
+<h1> ELIMINANDO ESTUDIANTE</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <h3>¿Desea Eliminar el registro de {{ estudiante.user.first_name }}{{ estudiante.user.last_name }}?</h3>
+
+  <button class="btn btn-danger" type="submit">SÍ, eliminar</button>
+  <a class="btn btn-default" href="{% url 'administrador:estudiante_listar' %}">Cancelar</a>
+
+</form>
+
+{% endblock %}

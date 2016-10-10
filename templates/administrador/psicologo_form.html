@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+<h1>CREAR UN PSICOLOGO</h1>
+
+<form method="post">
+  {% csrf_token %}
+  
+  {{ form2.as_p }}
+  {{ form.as_p }}
+
+
+  <button type="submit">GUARDAR</button>
+</form>
+{% endblock %}

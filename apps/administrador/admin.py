@@ -3,7 +3,7 @@ from models import * #apps.administrador.models import *
 
 
 # Register your models here.
-admin.site.register(Profile)
+#admin.site.register(Profile)
 admin.site.register(Administrador)
 admin.site.register(Estudiante)
 admin.site.register(Psicologo)

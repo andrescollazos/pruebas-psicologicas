@@ -7,11 +7,13 @@
   <thead>
     <tr>
       <td>Id Usuario</td>
-      <td>Nombres</td>
-      <td>Apellidos</td>
+      <td>Nombre de Usuario</td>
       <td>Email</td>
       <td>Documento de Identidad</td>
+      <td>Nombres</td>
+      <td>Apellidos</td>
       <td>Fecha de Nacimiento</td>
+      <td>Titulo Universitario</td>
       <td>Acciones</td>
     </tr>
   </thead>
@@ -20,15 +22,17 @@
     {% if object_list %}
     {% for psicologo in object_list %}
     <tr>
-      <td>{{ psicologo.user.user.id }}</td>
-      <td>{{ psicologo.user.user.first_name }}</td>
-      <td>{{ psicologo.user.user.last_name }}</td>
-      <td>{{ psicologo.user.user.email }}</td>
-      <td>{{ psicologo.user.docIdentidad }}</td>
-      <td>{{ psicologo.user.fechaDeNacimiento }}</td>
+      <td>{{ psicologo.user.id }}</td>
+      <td>{{ psicologo.user.username }}</td>
+      <td>{{ psicologo.user.email }}</td>
+      <td>{{ psicologo.docIdentidad }}</td>
+      <td>{{ psicologo.user.first_name }}</td>
+      <td>{{ psicologo.user.last_name }}</td>
+      <td>{{ psicologo.fechaDeNacimiento }}</td>
+      <td>{{ psicologo.titulo }}</td>
       <td>
-        <a class="btn btn-primary" href="#">Editar</a>
-        <a class="btn btn-primary" href="#">Eliminar</a>
+        <a class="btn btn-default" href="{% url 'administrador:psicologo_editar' psicologo.pk %}">Editar</a>
+        <a class="btn btn-danger" href="{% url 'administrador:psicologo_eliminar' psicologo.pk %}">Eliminar</a>
       </td>
     </tr>
     {% endfor %}

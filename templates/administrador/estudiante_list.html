@@ -1,16 +1,20 @@
 {% extends 'base/base.html'%}
 
 {% block content %}
+<h1>LISTA DE ESTUDIANTES</h1>
 
 <table class="table table-bordered">
   <thead>
     <tr>
       <td>Id Usuario</td>
+      <td>Username</td>
+      <td>Email</td>
       <td>Nombres</td>
       <td>Apellidos</td>
-      <td>Email</td>
       <td>Documento de Identidad</td>
       <td>Fecha de Nacimiento</td>
+      <td>Direccion</td>
+      <td>Telefono</td>
       <td>Acciones</td>
     </tr>
   </thead>
@@ -19,15 +23,18 @@
     {% if object_list %}
     {% for estudiante in object_list %}
     <tr>
-      <td>{{ estudiante.user.user.id }}</td>
-      <td>{{ estudiante.user.user.first_name }}</td>
-      <td>{{ estudiante.user.user.last_name }}</td>
-      <td>{{ estudiante.user.user.email }}</td>
-      <td>{{ estudiante.user.docIdentidad }}</td>
-      <td>{{ estudiante.user.fechaDeNacimiento }}</td>
+      <td>{{ estudiante.user.id }}</td>
+      <td>{{ estudiante.user.username }}</td>
+      <td>{{ estudiante.user.email }}</td>
+      <td>{{ estudiante.user.first_name }}</td>
+      <td>{{ estudiante.user.last_name }}</td>
+      <td>{{ estudiante.docIdentidad }}</td>
+      <td>{{ estudiante.fechaDeNacimiento }}</td>
+      <td>{{ estudiante.direccion }}</td>
+      <td>{{ estudiante.telefono }}</td>
       <td>
-        <a class="btn btn-primary" href="#">Editar</a>
-        <a class="btn btn-primary" href="#">Eliminar</a>
+        <a class="btn btn-default" href="{% url 'administrador:estudiante_editar' estudiante.pk %}">Editar</a>
+        <a class="btn btn-danger" href="{% url 'administrador:estudiante_eliminar' estudiante.pk %}">Eliminar</a>
       </td>
     </tr>
     {% endfor %}

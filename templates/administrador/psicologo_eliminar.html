@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block navbar %}
+<h1> ELIMINANDO PSICOLGO</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <h3>¿Desea Eliminar el registro de {{ psicologo.user.first_name }}{{ psicologo.user.last_name }}?</h3>
+
+  <button class="btn btn-danger" type="submit">SÍ, eliminar</button>
+  <a class="btn btn-default" href="{% url 'administrador:psicologo_listar' %}">Cancelar</a>
+
+</form>
+
+{% endblock %}

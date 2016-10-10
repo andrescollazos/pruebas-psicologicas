@@ -4,11 +4,12 @@ from views import *
 
 urlpatterns = [
     url(r'^$', index_administrador, name = 'index'),
-    url(r'^listar$', ProfileList.as_view(), name = 'profile_listar'),
-    url(r'^listarEstudiante$', EstudianteList.as_view(), name = 'estudiante_listar'),
-    url(r'^listarPsicologo$', PsicologoList.as_view(), name = 'psicologo_listar'),
-    url(r'^crearProfile$', ProfileCrear.as_view(), name = 'profile_crear'),
-    url(r'^editarprofile/(?P<pk>\d+)$', ProfileEditar.as_view(), name = 'profile_editar'),
-    url(r'^eliminar/(?P<pk>\d+)$', ProfileEliminar, name='profile_eliminar')
-    #url(r'^nuevo$', profile_create, name = 'profile_create'),
+    url(r'^listar/psicologos$', PsicologoList.as_view(), name = 'psicologo_listar'),
+    url(r'^listar/estudiantes$', EstudianteList.as_view(), name = 'estudiante_listar'),
+    url(r'^crear/psicologos$', PsicologoCrear.as_view(), name = 'psicologo_crear'),
+    url(r'^crear/estudiantes$', EstudianteCrear.as_view(), name = 'estudiante_crear'),
+    url(r'^editar/psicologos/(?P<pk>\d+)$', PsicologoEditar.as_view(), name = 'psicologo_editar'),
+    url(r'^editar/estudiantes/(?P<pk>\d+)$', EstudianteEditar.as_view(), name = 'estudiante_editar'),
+    url(r'^eliminar/psicologos/(?P<pk>\d+)$', PsicologoEliminar, name = 'psicologo_eliminar'),
+    url(r'^eliminar/estudiantes/(?P<pk>\d+)$', EstudianteEliminar, name = 'estudiante_eliminar'),
 ]

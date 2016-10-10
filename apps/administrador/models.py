@@ -6,15 +6,17 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 # Create your models here.
+TIPO_DOCUMENTO = (
+    ('CC', 'Cedula de Ciudadania'),
+    ('TI', 'Tarjeta de Identidad'),
+    ('RI', 'Registro Civil')
+)
 
 # CLASE USUARIO
+'''
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
-    TIPO_DOCUMENTO = (
-        ('CC', 'Cedula de Ciudadania'),
-        ('TI', 'Tarjeta de Identidad'),
-        ('RI', 'Registro Civil')
-    )
+
     tipoDocumento = models.CharField(max_length = 2, choices = TIPO_DOCUMENTO)
     docIdentidad = models.CharField(max_length = 10, primary_key = True)#, unique = True)
     fechaDeNacimiento = models.DateField(null = True, blank = True)
@@ -29,12 +31,20 @@ def create_user_profile(sender, instance, created, **kwargs):
        profile, created = Profile.objects.get_or_create(user=instance)
 
 post_save.connect(create_user_profile, sender=User)
-
+'''
 
 # CLASE ADMINISTRADOR -> TIENE LLAVE FORANEA DE USUARIO
 class Administrador(models.Model):
-    user = models.ForeignKey(Profile, on_delete = models.CASCADE)
-    informacionPersonal = models.TextField(max_length = 140, default = '', blank = True)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    cargoInstitucional = models.TextField(max_length = 140, default = '', blank = True)
+    tipoDocumento = models.CharField(max_length = 2, choices = TIPO_DOCUMENTO)
+    docIdentidad = models.CharField(max_length = 10, primary_key = True)#, unique = True)
+    fechaDeNacimiento = models.DateField(null = True, blank = True)
+    direccion = models.CharField(max_length = 120)
+    telefono = models.CharField(max_length = 10, blank = True)
+
+    def _str_(self):
+        return 'Psicologo. ' + self.user.first_name
 
 # CLASE INSTITUCION
 class Institucion(models.Model):
@@ -50,12 +60,17 @@ class Institucion(models.Model):
 
 # CLASE PSICOLOGO
 class Psicologo(models.Model):
-    user = models.ForeignKey(Profile, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    tipoDocumento = models.CharField(max_length = 2, choices = TIPO_DOCUMENTO)
+    docIdentidad = models.CharField(max_length = 10, primary_key = True)#, unique = True)
+    fechaDeNacimiento = models.DateField(null = True, blank = True)
+    direccion = models.CharField(max_length = 100)
+    telefono = models.CharField(max_length = 10, blank = True)
     titulo = models.CharField(max_length = 100) # Titulo Universitario
-    institucion = models.ForeignKey(Institucion, on_delete=models.CASCADE, null = True)
+    institucion = models.ForeignKey(Institucion, on_delete = models.CASCADE, null = True)
 
-    #def __str__(self):
-    #    return self.user
+    def __str__(self):
+        return self.user.first_name +' '+ self.user.last_name
 
 # CLASE GRUPO
 #class Grupo(models.Model):
@@ -71,6 +86,10 @@ class Grupo(models.Model):
 
 # CLASE ESTUDIANTE
 class Estudiante(models.Model):
-    user = models.ForeignKey(Profile, on_delete = models.CASCADE)
-    #institucion = models.ForeignKey(Institucion) # Una institucion tiene varios alumnos
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    tipoDocumento = models.CharField(max_length = 2, choices = TIPO_DOCUMENTO)
+    docIdentidad = models.CharField(max_length = 10, primary_key = True)#, unique = True)
+    fechaDeNacimiento = models.DateField(null = True, blank = True)
+    direccion = models.CharField(max_length = 100)
+    telefono = models.CharField(max_length = 10, blank = True)
     grupo = models.ForeignKey(Grupo, on_delete = models.CASCADE, null = True) # Un grupo tiene varios alumnos
