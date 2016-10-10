@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import permission_required
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
 
 from forms import *
 from models import *
@@ -57,8 +58,10 @@ class PsicologoCrear(CreateView):
         form = self.form_class(request.POST)
         form2 = self.second_form_class(request.POST)
         if form.is_valid() and form2.is_valid():
+            grupo = Group.objects.get(name = 'psicologos')
             psicologo = form.save(commit = False)
             psicologo.user = form2.save()
+            psicologo.user.groups.add(grupo)
             psicologo.save()
             return HttpResponseRedirect(self.get_success_url())
         else:
@@ -88,8 +91,10 @@ class EstudianteCrear(CreateView):
         form = self.form_class(request.POST)
         form2 = self.second_form_class(request.POST)
         if form.is_valid() and form2.is_valid():
+            grupo = Group.objects.get(name = 'estudiantes')
             estudiante = form.save(commit = False)
             estudiante.user = form2.save()
+            estudiante.user.groups.add(grupo)
             estudiante.save()
             return HttpResponseRedirect(self.get_success_url())
         else:
