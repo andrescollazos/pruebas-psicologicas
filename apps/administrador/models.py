@@ -12,27 +12,6 @@ TIPO_DOCUMENTO = (
     ('RI', 'Registro Civil')
 )
 
-# CLASE USUARIO
-'''
-class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
-
-    tipoDocumento = models.CharField(max_length = 2, choices = TIPO_DOCUMENTO)
-    docIdentidad = models.CharField(max_length = 10, primary_key = True)#, unique = True)
-    fechaDeNacimiento = models.DateField(null = True, blank = True)
-    direccion = models.CharField(max_length = 100)
-    telefono = models.CharField(max_length = 10, blank = True)
-
-    def __str__(self):
-        return "%s's profile" % self.user
-
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-       profile, created = Profile.objects.get_or_create(user=instance)
-
-post_save.connect(create_user_profile, sender=User)
-'''
-
 # CLASE ADMINISTRADOR -> TIENE LLAVE FORANEA DE USUARIO
 class Administrador(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
@@ -45,6 +24,11 @@ class Administrador(models.Model):
 
     def _str_(self):
         return 'Psicologo. ' + self.user.first_name
+
+    class Meta:
+        permissions = (
+            ('administrar', 'Puede administrar'),
+        )
 
 # CLASE INSTITUCION
 class Institucion(models.Model):
@@ -72,6 +56,14 @@ class Psicologo(models.Model):
     def __str__(self):
         return self.user.first_name +' '+ self.user.last_name
 
+    class Meta:
+        permissions = (
+            ('soypsicologo', 'Puedo ejercer'),
+            ("ver_evaluacion_psicologo", "Puede ver las evaluaciones"),
+            ("ver_diagnostico_psicologo", "Puede ver los diagnosticos"),
+            ("realizar_diagnostico", "Puede realizar un diagnostico")
+        )
+
 # CLASE GRUPO
 #class Grupo(models.Model):
 class Grupo(models.Model):
@@ -93,3 +85,9 @@ class Estudiante(models.Model):
     direccion = models.CharField(max_length = 100)
     telefono = models.CharField(max_length = 10, blank = True)
     grupo = models.ForeignKey(Grupo, on_delete = models.CASCADE, null = True) # Un grupo tiene varios alumnos
+
+    class Meta:
+        permissions = (
+            ("ver_test_estudiante", "Puede ver los test"),
+            ("ver_diagnostico", "Puede ver los diagnosticos")
+        )

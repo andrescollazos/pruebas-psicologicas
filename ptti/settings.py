@@ -133,7 +133,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 #AUTH_PROFILE_MODULE = "administrador.Profile"
 
 LOGIN_REDIRECT_URL = reverse_lazy('administrador:index')
-
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

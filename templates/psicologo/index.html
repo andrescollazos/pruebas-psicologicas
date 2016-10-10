@@ -1,0 +1,58 @@
+{% extends 'base/base.html'%}
+
+{% block title%}App psicologo{% endblock %}
+
+{% block Home %}
+<div class="navbar-header">
+  <a class="navbar-brand" href="{% url 'psicologo:index' %}">Inicio</a>
+</div>
+{% endblock %}
+
+{% block navbarLeft %}
+<div class="nav navbar-nav">
+  <li><a href="#">Pruebas</a></li>
+  <li><a href="#">Ver Diagnosticos</a></li>
+</div>
+{% endblock %}
+
+{% block content %}
+<h1>LISTA DE PRUEBAS TERMINADAS</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td>Id Prueba</td>
+      <td>Prueba</td>
+      <td>Descripción</td>
+      <td>Nombres de Estudiante</td>
+      <td>Apellidos de Estudiante</td>
+      <td>email</td>
+      <td>Acciones</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <!--{% if object_list %}
+    {% for estudiante in object_list %}-->
+    <tr>
+      <td>Id Prueba</td>
+      <td>Prueba</td>
+      <td>Descripción</td>
+      <td>Nombres de Estudiante</td>
+      <td>Apellidos de Estudiante</td>
+      <td>email</td>
+      <td>
+        <a class="btn btn-danger" href="#">Diagnosticar</a>
+      </td>
+    </tr>
+    <!--{% endfor %}
+
+    {% else %}
+    <h1>NO HAY REGISTROS DE ESTUDIANTES</h1>
+
+    {% endif %}-->
+  </tbody>
+</table>
+
+
+{% endblock %}

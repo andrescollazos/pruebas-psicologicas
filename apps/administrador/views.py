@@ -2,6 +2,7 @@
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import permission_required
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
@@ -10,6 +11,7 @@ from forms import *
 from models import *
 # Create your views here.
 
+@permission_required('administrador.administrar', login_url = '/accounts/login/')
 def index_administrador(request):
     return render(request, 'administrador/index.html')
 
@@ -18,11 +20,13 @@ def index_administrador(request):
 # VIEWS CORRESPONDIENTES AL LISTADO DE MODELOS:
 
 # Modelo estudiante
+#@permission_required('administrador.administrar', login_url = '/accounts/login/')
 class EstudianteList(ListView):
     model = Estudiante
     template_name = 'administrador/estudiante_list.html'
 
 # Modelo Psicologo
+#@permission_required('administrador.administrar', login_url = '/accounts/login/')
 class PsicologoList(ListView):
     model = Psicologo
     template_name = 'administrador/psicologo_list.html'
@@ -176,6 +180,7 @@ class EstudianteEditar(UpdateView):
 # VIEWS RELACIONADAS A LA ELIMINACION DE REGISTROS
 
 # Modelo Psicologo
+@permission_required('administrador.administrar', login_url = '/accounts/login/')
 def PsicologoEliminar(request, pk):
     psicologo = Psicologo.objects.get(docIdentidad = pk)
     if request.method == 'POST':
@@ -186,6 +191,7 @@ def PsicologoEliminar(request, pk):
     return render(request, 'administrador/psicologo_eliminar.html', {'psicologo':psicologo})
 
 # Modelo Estudiante
+@permission_required('administrador.administrar', login_url = '/accounts/login/')
 def EstudianteEliminar(request, pk):
     estudiante = Estudiante.objects.get(docIdentidad = pk)
     if request.method == 'POST':
@@ -198,14 +204,3 @@ def EstudianteEliminar(request, pk):
 # NO SE HARA USO DE LA CLASE DeleteView YA QUE SOLO QUEEREMOS HACER UN BORRADO LOGICO:
 # SE ELIMINA DE LA TABLA DE Profile, PERO NO DE LA TABLA DE User, EN DICHA TABLA SOLO
 # SE PONE COMO INACTIVA LA CUENTA
-'''
-def ProfileEliminar(request, pk):
-    profile = Profile.objects.get(docIdentidad = pk)
-    if request.method == 'POST':
-        profile.user.is_active = 0
-        profile.delete()
-        return HttpResponseRedirect(reverse_lazy('administrador:profile_listar'))
-    return render(request, 'administrador/profile_delete.html', {'profile':profile})
-
-
-'''

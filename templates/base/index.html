@@ -1,0 +1,49 @@
+{% extends 'base/base.html'%}
+
+{% block title %} Estudiante {% endblock %}
+
+
+
+{% block Home %}
+<div class="navbar-header">
+  <a class="navbar-brand" href="{% url 'estudiante:index' %}">Inicio</a>
+</div>
+{% endblock %}
+{% block navbarLeft %}{% endblock %}
+
+
+{% block content %}
+<h1>LISTA DE TEST</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td>Id Prueba</td>
+      <td>Prueba</td>
+      <td>Descripción</td>
+      <td>Diagnostico</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <!--{% if object_list %}
+    {% for estudiante in object_list %}-->
+    <tr>
+      <td> 1511 </td>
+      <td> *Prueba HY * </td>
+      <td> *Analizar Patrones* </td>
+      <td>
+        <a class="btn btn-default" href="#">Diagnostico</a>
+      </td>
+    </tr>
+    <!--{% endfor %}
+
+    {% else %}
+    <h1>NO HAY REGISTROS DE ESTUDIANTES</h1>
+
+    {% endif %}-->
+  </tbody>
+</table>
+
+
+{% endblock %}
