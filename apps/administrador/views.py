@@ -36,8 +36,11 @@ class PsicologoList(ListView):
 
 # Modelo Psicologo
 class PsicologoCrear(CreateView):
-    p = Psicologo.objects.filter(fechaDeNacimiento = None)
-    p.delete()
+    try:
+        p = Psicologo.objects.filter(fechaDeNacimiento = None)
+        p.delete()
+    except:
+        pass
 
     model = Psicologo
     template_name = 'administrador/psicologo_form.html'
@@ -69,9 +72,12 @@ class PsicologoCrear(CreateView):
 
 # Modelo Estudiante
 class EstudianteCrear(CreateView):
-    p = Estudiante.objects.filter(fechaDeNacimiento = None)
-    p.delete()
-
+    try:
+        p = Estudiante.objects.filter(fechaDeNacimiento = None)
+        p.delete()
+    except:
+        pass
+        
     model = Estudiante
     template_name = 'administrador/estudiante_form.html'
     form_class = EstudianteForm
