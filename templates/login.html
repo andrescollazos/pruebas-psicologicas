@@ -5,10 +5,13 @@ PTTI
 {% endblock %}
 
 {% block navbar%}
-<h1 align = "center">INGRESAR A LA PLATAFORMA</h1>
+{% endblock %}
+
+{% block logout %}
 {% endblock %}
 
 {% block content %}
+<h2>INGRESAR A LA PLATAFORMA</h2>
 
 <form method="post">
 	{% csrf_token %}

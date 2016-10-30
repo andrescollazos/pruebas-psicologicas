@@ -1,10 +1,8 @@
-{% extends 'base/base.html' %}
+{% extends 'administrador/index.html'%}
 
-{% block navbar %}
-<h1> ELIMINANDO ESTUDIANTE</h1>
-{% endblock %}
 
 {% block content %}
+<h1>PRECAUCIÓN: ELIMINADO ESTUDIANTE</h1>
 <form method="post">
   {% csrf_token %}
   <h3>¿Desea Eliminar el registro de {{ estudiante.user.first_name }}{{ estudiante.user.last_name }}?</h3>
@@ -13,5 +11,8 @@
   <a class="btn btn-default" href="{% url 'administrador:estudiante_listar' %}">Cancelar</a>
 
 </form>
+
+<br>
+Nota: Se guardará un registro indicando quien fue el administrador que elimino al estudiante
 
 {% endblock %}

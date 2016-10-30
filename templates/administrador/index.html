@@ -2,24 +2,36 @@
 
 {% block title%}App Administrador{% endblock %}
 
-{% block Home %}
-<div class="navbar-header">
+{% block home %}
   <a class="navbar-brand" href="{% url 'administrador:index' %}">Inicio</a>
-</div>
 {% endblock %}
 
-{% block navbarLeft %}
-<div class="nav navbar-nav">
-  <li><a href="{% url 'administrador:psicologo_crear' %}">Registrar Psicologo</a></li>
-  <li><a href="{% url 'administrador:psicologo_listar' %}">Listar Psicologos</a></li>
-  <li><a href="{% url 'administrador:estudiante_crear' %}">Registrar Psicologo</a></li>
-  <li><a href="{% url 'administrador:estudiante_listar' %}">Listar Estudiantes</a></li>
-</div>
+{% block navbar %}
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Psicologo <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="{% url 'administrador:psicologo_crear' %}">Registrar</a></li>
+      <li><a href="{% url 'administrador:psicologo_listar' %}">Listar</a></li>
+    </ul>
+  </li>
+
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estudiante <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="{% url 'administrador:estudiante_crear' %}">Registrar</a></li>
+      <li><a href="{% url 'administrador:estudiante_listar' %}">Listar</a></li>
+    </ul>
+  </li>
 {% endblock %}
+
 
 {% block content %}
-<h3>	APP DE ADMINISTRADOR	</h4>
-<h4> Tiene las siguientes facultades </h5>
-<h5> - Gestionar psicologos </h5>
-<h5> - Gestionar estudiantes </h5>
+  <h2>APP DEL ADMINISTRADOR</h2>
+  <h4>  Datos del administrador </h4>
+    Usuario: {{ user.username }} <br>
+    Correo: {{ user.email}}
+  <h4> Tiene las siguientes facultades </h5>
+    - Gestionar psicologos  <br>
+    - Gestionar estudiantes <br> <br>
+  <p><a class="btn btn-primary btn-lg">Editar</a></p>
 {% endblock %}

@@ -6,72 +6,53 @@
 
 	{% block extrastatic %}
 	{% endblock %}
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<title>{% block title %}PTTI{% endblock %}</title>
 
-	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-	<title>{% block title %}Document {% endblock %}</title>
 </head>
 <body>
-<div class="container">
+	<header>
+		<nav class="navbar navbar-default" style="margin-left: 5%; margin-right:5%;">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					{% block home %}
 
-	{% block navbar %}
-		<div class="bs-docs-section clearfix">
-		    <div class="row">
-		        <div class="col-lg-12">
-		            <div class="bs-component">
-		            	<nav class="navbar navbar-default">
-		                	<div class="container-fluid">
-												{% block Home %}
-												<div class="navbar-header">
-		                    	<a class="navbar-brand" href="#">Inicio</a>
-		                  	</div>
-												{% endblock %}
+					{% endblock %}
+		    </div>
 
-		                  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-													{% block navbarLeft %}
-													<div class="nav navbar-nav">
-													  <li><a href="{% url 'administrador:psicologo_crear' %}">Registrar Psicologo</a></li>
-													  <li><a href="{% url 'administrador:psicologo_listar' %}">Listar Psicologos</a></li>
-													  <li><a href="{% url 'administrador:estudiante_crear' %}">Registrar Estudiante</a></li>
-													  <li><a href="{% url 'administrador:estudiante_listar' %}">Listar Estudiantes</a></li>
-													</div>
-													{% endblock %}
-													{% block navbarRight %}
-		                    	<ul class="nav navbar-nav navbar-right">
-														<a class="navbar-brand" href="{% url 'logout' %}">Salir</a>
-		                        	<!--<li class="dropdown">
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+						{% block navbar %}
 
-		                        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opciones<span class="caret"></span></a>
-		                        		<ul class="dropdown-menu" role="menu">
-		                          			<li><a href="">Salir</a></li>
-		                        		</ul>
-		                      		</li>-->
-		                    	</ul>
-													{% endblock %}
-		                    </div>
-		                </div>
-		            </nav>
-		        </div>
-           	</div>
-        </div>
-    </div>
+						{% endblock %}
+		      </ul>
 
-	{% endblock %}
+					{% block logout %}
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="{% url 'logout' %}">Salir</a></li>
+		      </ul>
+					{% endblock %}
+		    </div>
 
+			</div>
+		</nav>
+	</header>
 
-	{% block content %}
-	<h4>	Bloque de contenido		</h4>
-	{% endblock %}
+	<main>
+		<div class="jumbotron">
+			{% block content %}
+				 <h1>contenido a mostrar</h1>
+			{% endblock %}
+		</div>
+	</main>
 
+	<footer>
+		{% block footer %}
 
-	{% block footer %}
-	{% endblock%}
-</div>
+		{% endblock %}
+	</footer>
 
-	<script src="{% static 'js/bootstrap.min.js' %}"></script>
-
-	{% block extrajs %}
-	{% endblock %}
-
-
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

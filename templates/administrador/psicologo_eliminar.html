@@ -1,10 +1,8 @@
-{% extends 'base/base.html' %}
-
-{% block navbar %}
-<h1> ELIMINANDO PSICOLGO</h1>
-{% endblock %}
+{% extends 'administrador/index.html'%}
 
 {% block content %}
+
+<h1>PRECAUCIÓN: ELIMINADO PSICOLOGO</h1>
 <form method="post">
   {% csrf_token %}
   <h3>¿Desea Eliminar el registro de {{ psicologo.user.first_name }}{{ psicologo.user.last_name }}?</h3>
@@ -13,5 +11,8 @@
   <a class="btn btn-default" href="{% url 'administrador:psicologo_listar' %}">Cancelar</a>
 
 </form>
+
+<br>
+Nota: Se guardará un registro indicando quien fue el administrador que elimino al psicologo
 
 {% endblock %}

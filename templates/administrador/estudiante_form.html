@@ -1,18 +1,106 @@
-{% extends 'base/base.html' %}
-
-{% block navbar %}
-{% endblock %}
+{% extends 'administrador/index.html'%}
 
 {% block content %}
-<h1>CREAR UN ESTUDIANTE</h1>
+<h2>CREAR UN ESTUDIANTE</h2>
 
 <form method="post">
   {% csrf_token %}
 
-  {{ form2.as_p }}
-  {{ form.as_p }}
+<div class="form-horizontal">
+  <fieldset>
+    <legend>Ingresar datos</legend>
 
+    <div class="form-group">
+      <label for="{{form2.username.name}}" class="col-lg-5 control-label">{{form2.username.label}}</label>
+      <div class="col-lg-2">
+        {{form2.username}}
+      </div>
+    </div>
 
-  <button type="submit">GUARDAR</button>
+    <div class="form-group">
+      <label for="{{form2.email.name}}" class="col-lg-5 control-label">{{form2.email.label}}</label>
+      <div class="col-lg-2">
+        {{form2.email}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{form2.password1.name}}" class="col-lg-5 control-label">{{form2.password1.label}}</label>
+      <div class="col-lg-2">
+      {{form2.password1}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{form2.password2.name}}" class="col-lg-5 control-label">{{form2.password2.label}}</label>
+      <div class="col-lg-2">
+      {{form2.password2}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{form2.first_name.name}}" class="col-lg-5 control-label">{{form2.first_name.label}}</label>
+      <div class="col-lg-2">
+      {{form2.first_name}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{form2.last_name.name}}" class="col-lg-5 control-label">{{form2.last_name.label}}</label>
+      <div class="col-lg-2">
+      {{form2.last_name}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{form.tipoDocumento.name}}" class="col-lg-5 control-label">{{form.tipoDocumento.label}}</label>
+      <div class="col-lg-2">
+        <select class="form-control" id="id_tipoDocumento" name="tipoDocumento" required="">
+          <option value="" selected="selected">Seleccionar</option>
+          <option value="CC">Cedula de Ciudadania</option>
+          <option value="TI">Tarjeta de Identidad</option>
+          <option value="RI">Registro Civil</option>
+        </select>
+      <!--{{form.tipoDocumento}}-->
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{form.docIdentidad.name}}" class="col-lg-5 control-label">{{form.docIdentidad.label}}</label>
+      <div class="col-lg-2">
+      {{form.docIdentidad}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{form.fechaDeNacimiento.name}}" class="col-lg-5 control-label">{{form.fechaDeNacimiento.label}}</label>
+      <div class="col-lg-2">
+      {{form.fechaDeNacimiento}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{form.direccion.name}}" class="col-lg-5 control-label">{{form.direccion.label}}</label>
+      <div class="col-lg-2">
+      {{form.direccion}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{form.telefono.name}}" class="col-lg-5 control-label">{{form.telefono.label}}</label>
+      <div class="col-lg-2">
+        {{form.telefono}}
+      </div>
+    </div>
+
+  </fieldset>
+</div>
+
+  <div class="form-group">
+    <div class="col-lg-8 col-lg-offset-2">
+      <button type="reset" class="btn btn-default">Resetar</button>
+      <button type="submit" class="btn btn-primary">Crear</button>
+    </div>
+  </div>
 </form>
 {% endblock %}
