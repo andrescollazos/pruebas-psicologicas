@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ptti$ptti',
         'USER': 'ptti',
-        'PASSWORD': '<CAMBIAR_PASSWORD>',
+        'PASSWORD': 'pipe3457246',
         'HOST': 'ptti.mysql.pythonanywhere-services.com',
     }
 }
@@ -135,10 +135,15 @@ LOGIN_REDIRECT_URL = reverse_lazy('administrador:index')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 25
 EMAIL_HOST_USER = 'pipecollazos1@gmail.com'
-EMAIL_HOST_PASSWORD = 'pipe3445038'
-EMAIL_BACKENDS = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_PASSWORD = '######'
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL 	= EMAIL_HOST_USER
+SERVER_EMAIL 		    = EMAIL_HOST_USER
+
+
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
