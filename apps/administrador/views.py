@@ -36,7 +36,17 @@ class PsicologoList(ListView):
     model = Psicologo
     template_name = 'administrador/psicologo_list.html'
 
+# Modelo Institucion
+class InstitucionList(ListView):
+    model = Institucion
+    template_name = 'administrador/instituciones_list.html'
+
 # VISTAS RELACIONADAS A LA CREACION DE REGISTROS
+class InstitucionCrear(CreateView):
+    model = Institucion
+    template_name = 'administrador/instituciones_form.html'
+    form_class = InstitucionForm
+    success_url = reverse_lazy('administrador:instituciones_listar')
 
 # Modelo Psicologo
 class PsicologoCrear(CreateView):

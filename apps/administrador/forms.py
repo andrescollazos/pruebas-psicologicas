@@ -23,12 +23,6 @@ class UserForm(UserCreationForm):
             'first_name': 'Nombres',
             'last_name': 'Apellidos',
         }
-        #widgets = {
-        #    'username': forms.TextInput(attrs = {'class':'form-control'}),
-        #    'email': forms.EmailInput(attrs = {'class':'form-control'}),
-        #    'first_name': forms.TextInput(attrs = {'class':'form-control'}),
-        #    'last_name': forms.TextInput(attrs = {'class':'form-control'}),
-        #}
 
 TIPO_DOCUMENTO = (
     ('CC', 'Cedula de Ciudadania'),
@@ -60,13 +54,6 @@ class PsicologoForm(forms.ModelForm):
             'telefono': 'Telefono',
             'titulo' : 'Titulo Universitario',
         }
-        #widgets = {
-        #    'tipoDocumento': forms.TextInput(attrs = {'class': 'form-control'}),#CheckboxInput(),
-        #    'docIdentidad': forms.TextInput(attrs = {'class': 'form-control'}),
-        #    'fechaDeNacimiento' : forms.DateInput(attrs = {'class': 'form-control'}),
-        #    'direccion': forms.TextInput(attrs = {'class': 'form-control'}),
-        #    'titulo' : forms.TextInput(attrs = {'class':'form-control'})
-        #}
 
 # FORMULARIO PARA LA CREACION DEL OBJETO ESTUDIANTE
 class EstudianteForm(forms.ModelForm):
@@ -88,14 +75,27 @@ class EstudianteForm(forms.ModelForm):
             'telefono': 'Telefono',
             #'grupo' : 'Grupo asignado'
         }
-        #widgets = {
-        #    'tipoDocumento': forms.Select(choices = TIPO_DOCUMENTO),#attrs = {'class': 'form-control'}),#CheckboxInput(),
-        #    'docIdentidad': forms.TextInput(attrs = {'class': 'form-control'}),
-        #    'fechaDeNacimiento' : forms.DateInput(attrs = {'class': 'form-control'}),
-        #    'direccion': forms.TextInput(attrs = {'class': 'form-control'}),
-        #    #'grupo' : forms.TextInput(attrs = {'class':'form-control'})
-        #}
 
+# FORMULARIO PARA LA CREACION DEL OBJETO INSTITUCION
+class InstitucionForm(forms.ModelForm):
+    class Meta:
+        model = Institucion
+        fields = [
+            'nit',
+            'nombre',
+            'telefono',
+            'email',
+            'paginaWeb',
+            'direccion',
+        ]
+        labels = {
+            'nit': 'NIT',
+            'nombre': 'Nombre de la Institucion',
+            'telefono': 'Telefono',
+            'email': 'Correo electronico',
+            'paginaWeb': 'Sitio Web',
+            'direccion': 'Direccion',
+        }
 
 # FORMULARIOS PARA LA MODIFICACION DE PROFILES (YA QUE NO SE REQUIEREN TODOS LOS CAMPOS)
 

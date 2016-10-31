@@ -22,6 +22,14 @@
       <li><a href="{% url 'administrador:estudiante_listar' %}">Listar</a></li>
     </ul>
   </li>
+
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Instituciones <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="{% url 'administrador:instituciones_crear' %}">Registrar</a></li>
+      <li><a href="{% url 'administrador:instituciones_listar' %}">Listar</a></li>
+    </ul>
+  </li>
 {% endblock %}
 
 
@@ -33,8 +41,9 @@
     Nombre  : {{ user.first_name }} <br>
     Apellido: {{ user.last_name }}  <br>
   <h4> Tiene las siguientes facultades </h5>
-    - Gestionar psicologos  <br>
-    - Gestionar estudiantes <br> <br>
+    - Gestionar psicologos    <br>
+    - Gestionar estudiantes   <br>
+    - Gestionar instituciones <br> <br>
   <p><a class="btn btn-primary btn-lg" href="{% url 'editar_perfil' user.pk%}">Editar</a></p>
   <p><a class="btn btn-primary btn-lg" href="{% url 'editar_password'%}">Editar Contraseña</a></p>
 
