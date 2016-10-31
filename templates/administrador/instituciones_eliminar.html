@@ -1,0 +1,18 @@
+{% extends 'administrador/index.html'%}
+
+
+{% block content %}
+<h1>PRECAUCIÓN: ELIMINADO INSTITUCION</h1>
+<form method="post">
+  {% csrf_token %}
+  <h3>¿Desea Eliminar el registro de {{ institucion.nombre }}?</h3>
+
+  <button class="btn btn-danger" type="submit">SÍ, eliminar</button>
+  <a class="btn btn-default" href="{% url 'administrador:instituciones_listar' %}">Cancelar</a>
+
+</form>
+
+<br>
+Nota: Se guardará un registro indicando quien fue el administrador que elimino la institucion
+
+{% endblock %}

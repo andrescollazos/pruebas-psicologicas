@@ -122,6 +122,25 @@ class UserEditarForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs = {'class':'form-control'}),
         }
 
+# Modelo Institucion
+class InstitucionEditarForm(forms.ModelForm):
+    class Meta:
+        model = Institucion
+        fields = [
+            'nombre',
+            'telefono',
+            'email',
+            'paginaWeb',
+            'direccion',
+        ]
+        labels = {
+            'nombre': 'Nombre de la Institucion',
+            'telefono': 'Telefono',
+            'email': 'Correo electronico',
+            'paginaWeb': 'Sitio Web',
+            'direccion': 'Direccion',
+        }
+
 # Modelo Psicologo
 class PsicologoEditarForm(forms.ModelForm):
     class Meta:

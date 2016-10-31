@@ -223,6 +223,13 @@ class EstudianteEditar(UpdateView):
             #print "ALGO FALLO"
             return HttpResponseRedirect(self.get_success_url())
 
+# Modelo Institucion
+class InstitucionEditar(UpdateView):
+    model = Institucion
+    template_name = 'administrador/instituciones_editar_form.html'
+    form_class = InstitucionEditarForm
+    success_url = reverse_lazy('administrador:instituciones_listar')
+
 # VIEWS RELACIONADAS A LA ELIMINACION DE REGISTROS
 
 # Modelo Psicologo
@@ -246,6 +253,15 @@ def EstudianteEliminar(request, pk):
         estudiante.delete()
         return HttpResponseRedirect(reverse_lazy('administrador:estudiante_listar'))
     return render(request, 'administrador/estudiante_eliminar.html', {'estudiante': estudiante})
+
+# Modelo Institucion
+@permission_required('administrador.administrar', login_url = '/accounts/login/')
+def InstitucionEliminar(request, pk):
+    institucion = Institucion.objects.get(nit = pk)
+    if request.method == 'POST':
+        institucion.delete()
+        return HttpResponseRedirect(reverse_lazy('administrador:instituciones_listar'))
+    return render(request, 'administrador/instituciones_eliminar.html', {'institucion': institucion})
 
 # NO SE HARA USO DE LA CLASE DeleteView YA QUE SOLO QUEEREMOS HACER UN BORRADO LOGICO:
 # SE ELIMINA DE LA TABLA DE Profile, PERO NO DE LA TABLA DE User, EN DICHA TABLA SOLO
