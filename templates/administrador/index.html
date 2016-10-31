@@ -35,5 +35,8 @@
   <h4> Tiene las siguientes facultades </h5>
     - Gestionar psicologos  <br>
     - Gestionar estudiantes <br> <br>
-  <p><a class="btn btn-primary btn-lg" href="{% url 'administrador:editar_perfil' user.pk%}">Editar</a></p>
+  <p><a class="btn btn-primary btn-lg" href="{% url 'editar_perfil' user.pk%}">Editar</a></p>
+  <p><a class="btn btn-primary btn-lg" href="{% url 'editar_password'%}">Editar Contraseña</a></p>
+
+  <a href="javascript:window.history.go(-1);">Pagina de Inicio</a>
 {% endblock %}

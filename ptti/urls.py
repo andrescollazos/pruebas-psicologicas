@@ -16,7 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib.auth.views import login, logout_then_login, password_reset, password_reset_done, password_reset_confirm, password_reset_complete
 from django.contrib import admin
+from django.contrib.auth.decorators import permission_required, login_required
+from django.contrib.auth.views import password_change, password_change_done
 from django.shortcuts import render
+from apps.administrador.views import *
 
 def index(request):
     return render(request, 'index.html')
@@ -42,5 +45,9 @@ urlpatterns = [
     url(r'^reset/done', password_reset_complete,
         {'template_name': 'registration/password_reset_complete.html'},
         name = 'password_reset_complete'),
+    url(r'^editar/perfil/(?P<pk>\d+)$', login_required(login_url = '/accounts/login/')(UsuarioEditar.as_view()),
+            name='editar_perfil'),
+    url(r'^editar/password/$', login_required(login_url = '/accounts/login/')(UsuarioEditarPassword),
+            name='editar_password'),
 
 ]

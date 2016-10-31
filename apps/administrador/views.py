@@ -2,11 +2,15 @@
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.decorators import permission_required
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import permission_required, login_required
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
+from django.contrib.auth.forms import PasswordChangeForm
 
 from forms import *
 from models import *
@@ -110,33 +114,24 @@ class EstudianteCrear(CreateView):
 # Modelo User
 class UsuarioEditar(UpdateView):
     model = User
-    template_name = 'administrador/editar.html'
+    template_name = 'editar.html'
     form_class = UserEditarForm
-    success_url = reverse_lazy('administrador:index')
+    success_url = reverse_lazy('index')
 
-    def get_context_data(self, **kwargs):
-        context = super(UsuarioEditar, self).get_context_data(**kwargs)
-        pk = self.kwargs.get('pk', 0)
-        user = self.model.objects.get(id = pk)
-        if 'form' not in context:
-            context['form'] = self.form_class()
-        context['id'] = pk
-        return context
-
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object
-        id_profile = kwargs['pk']
-        user = self.model.objects.get(id = id_profile)
-
-        form = self.form_class(request.POST, instance = user)
-        #print "FORM: ", form
+@login_required(login_url = '/accounts/login/')
+def UsuarioEditarPassword(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(self.get_success_url())
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('index')
         else:
-            #print "ALGO FALLO"
-            return HttpResponseRedirect(self.get_success_url())
-
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'editar_password.html', {'form': form})
 
 # Modelo Psicologo
 class PsicologoEditar(UpdateView):

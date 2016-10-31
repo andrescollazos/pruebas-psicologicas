@@ -4,15 +4,22 @@
 
 
 
-{% block Home %}
-<div class="navbar-header">
-  <a class="navbar-brand" href="{% url 'estudiante:index' %}">Inicio</a>
-</div>
+{% block home %}
+<a class="navbar-brand" href="{% url 'estudiante:index' %}">Inicio</a>
 {% endblock %}
-{% block navbarLeft %}{% endblock %}
+{% block navbar %}{% endblock %}
 
 
 {% block content %}
+<h2>APP DEL ESTUDIANTE</h2>
+<h4>  Datos del estudiante </h4>
+  Usuario : {{ user.username }}   <br>
+  Correo  : {{ user.email}}       <br>
+  Nombre  : {{ user.first_name }} <br>
+  Apellido: {{ user.last_name }}  <br>
+<p><a class="btn btn-primary btn-lg" href="{% url 'editar_perfil' user.pk%}">Editar</a></p>
+<p><a class="btn btn-primary btn-lg" href="{% url 'editar_password'%}">Editar Contraseña</a></p>
+<!--
 <h1>LISTA DE TEST</h1>
 
 <table class="table table-bordered">
@@ -27,7 +34,7 @@
 
   <tbody>
     <!--{% if object_list %}
-    {% for estudiante in object_list %}-->
+    {% for estudiante in object_list %}
     <tr>
       <td> 1511 </td>
       <td> *Prueba HY * </td>
@@ -41,9 +48,9 @@
     {% else %}
     <h1>NO HAY REGISTROS DE ESTUDIANTES</h1>
 
-    {% endif %}-->
+    {% endif %}
   </tbody>
 </table>
-
-
+-->
+<a href="javascript:window.history.go(-1);">Pagina de Inicio</a>
 {% endblock %}
