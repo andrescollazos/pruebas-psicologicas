@@ -1,0 +1,51 @@
+{% extends 'administrador/index.html'%}
+
+{% block content %}
+<h2>Editar Mi perfil</h2>
+
+<form method="post">
+	{% csrf_token %}
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label for="{{form.username.name}}">{{form.username.label}}</label>
+				{{form.username}}
+			</div>
+		</div>
+
+    <div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label for="{{form.email.name}}">{{form.email.label}}</label>
+				{{form.email}}
+			</div>
+		</div>
+
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label for="{{form.first_name.name}}">{{form.first_name.label}}</label>
+				{{form.first_name}}
+			</div>
+		</div>
+
+    <div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label for="{{form.last_name.name}}">{{form.last_name.label}}</label>
+				{{form.last_name}}
+			</div>
+		</div>
+
+    <div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label for="{{form.email.name}}">{{form.email.label}}</label>
+				{{form.email}}
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<button class="btn btn-primary" type="submit">Guardar</button>
+			</div>
+</div>
+</form>
+{% endblock %}

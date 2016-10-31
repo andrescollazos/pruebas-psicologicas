@@ -77,7 +77,7 @@ class EstudianteCrear(CreateView):
         p.delete()
     except:
         pass
-        
+
     model = Estudiante
     template_name = 'administrador/estudiante_form.html'
     form_class = EstudianteForm
@@ -107,6 +107,36 @@ class EstudianteCrear(CreateView):
             return self.render_to_response(self.get_context_data(form = form, form2 = form2))
 
 # VIEWS RELACIONADAS A LA EDICION DE LOS REGISTROS
+# Modelo User
+class UsuarioEditar(UpdateView):
+    model = User
+    template_name = 'administrador/editar.html'
+    form_class = UserEditarForm
+    success_url = reverse_lazy('administrador:index')
+
+    def get_context_data(self, **kwargs):
+        context = super(UsuarioEditar, self).get_context_data(**kwargs)
+        pk = self.kwargs.get('pk', 0)
+        user = self.model.objects.get(id = pk)
+        if 'form' not in context:
+            context['form'] = self.form_class()
+        context['id'] = pk
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object
+        id_profile = kwargs['pk']
+        user = self.model.objects.get(id = id_profile)
+
+        form = self.form_class(request.POST, instance = user)
+        #print "FORM: ", form
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            #print "ALGO FALLO"
+            return HttpResponseRedirect(self.get_success_url())
+
 
 # Modelo Psicologo
 class PsicologoEditar(UpdateView):

@@ -28,10 +28,12 @@
 {% block content %}
   <h2>APP DEL ADMINISTRADOR</h2>
   <h4>  Datos del administrador </h4>
-    Usuario: {{ user.username }} <br>
-    Correo: {{ user.email}}
+    Usuario : {{ user.username }}   <br>
+    Correo  : {{ user.email}}       <br>
+    Nombre  : {{ user.first_name }} <br>
+    Apellido: {{ user.last_name }}  <br>
   <h4> Tiene las siguientes facultades </h5>
     - Gestionar psicologos  <br>
     - Gestionar estudiantes <br> <br>
-  <p><a class="btn btn-primary btn-lg">Editar</a></p>
+  <p><a class="btn btn-primary btn-lg" href="{% url 'administrador:editar_perfil' user.pk%}">Editar</a></p>
 {% endblock %}
