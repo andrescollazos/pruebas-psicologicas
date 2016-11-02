@@ -10,8 +10,10 @@
   <table class="table table-striped table-hover ">
     <thead>
       <tr>
-        <td>Id Usuario</td>
+        <td>#</td>
         <td>Username</td>
+        <td>Grupo</td>
+        <td>Institucion</td>
         <td>Email</td>
         <td>Nombres</td>
         <td>Apellidos</td>
@@ -29,6 +31,8 @@
       <tr>
         <td>{{ estudiante.user.id }}</td>
         <td>{{ estudiante.user.username }}</td>
+        <td>{{ estudiante.grupo.nombre_grado }}</td>
+        <td>{{ estudiante.grupo.institucion }}</td>
         <td>{{ estudiante.user.email }}</td>
         <td>{{ estudiante.user.first_name }}</td>
         <td>{{ estudiante.user.last_name }}</td>

@@ -25,7 +25,7 @@ class Administrador(models.Model):
     telefono = models.CharField(max_length = 10, blank = True)
 
     def _str_(self):
-        return 'Psicologo. ' + self.user.first_name
+        return 'Admin. ' + self.user.first_name
 
     class Meta:
         permissions = (
@@ -79,6 +79,9 @@ class Grupo(models.Model):
     jornada = models.CharField(max_length = 2, choices = JORNADA)
     nombre_grado = models.CharField(max_length = 30, null = True)
 
+    def __str__(self):
+        return self.nombre_grado+' '+self.institucion.nombre
+
 # CLASE ESTUDIANTE
 class Estudiante(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
@@ -94,3 +97,6 @@ class Estudiante(models.Model):
             ("ver_test_estudiante", "Puede ver los test"),
             ("ver_diagnostico", "Puede ver los diagnosticos")
         )
+
+    def __str__(self):
+        return self.user.first_name+" "+self.user.last_name

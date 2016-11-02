@@ -65,7 +65,7 @@ class EstudianteForm(forms.ModelForm):
             'fechaDeNacimiento',
             'direccion',
             'telefono',
-            #'grupo',
+            'grupo',
         ]
         labels = {
             'tipoDocumento': 'Tipo de documento (CC-TI-RI)',
@@ -73,7 +73,7 @@ class EstudianteForm(forms.ModelForm):
             'fechaDeNacimiento': 'Fecha de Nacimiento (yyyy-mm-dd)',
             'direccion': 'Direccion de recidencia',
             'telefono': 'Telefono',
-            #'grupo' : 'Grupo asignado'
+            'grupo' : 'Grupo'
         }
 
 # FORMULARIO PARA LA CREACION DEL OBJETO INSTITUCION
@@ -206,17 +206,17 @@ class EstudianteEditarForm(forms.ModelForm):
             'fechaDeNacimiento',
             'direccion',
             'telefono',
-            #'grupo',
+            'grupo',
         ]
         labels = {
             'fechaDeNacimiento': 'Fecha de Nacimiento (yyyy-mm-dd)',
             'direccion': 'Direccion de recidencia',
             'telefono': 'Telefono',
-            #'grupo': 'Grupo de Clase'
+            'grupo': 'Grupo de Clase'
         }
-        widgets = {
-            'fechaDeNacimiento' : forms.DateInput(attrs = {'class': 'form-control'}),
-            'direccion': forms.TextInput(attrs = {'class': 'form-control'}),
-            'telefono' : forms.TextInput(attrs = {'class': 'form-control'}),
-            #'grupo' : forms.TextInput(attrs = {'class':'form-control'})
-        }
+        #widgets = {
+        #    'fechaDeNacimiento' : forms.DateInput(attrs = {'class': 'form-control'}),
+        #    'direccion': forms.TextInput(attrs = {'class': 'form-control'}),
+        #    'telefono' : forms.TextInput(attrs = {'class': 'form-control'}),
+        #    'grupo' : forms.TextInput(attrs = {'class':'form-control'})
+        #}
