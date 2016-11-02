@@ -1,0 +1,47 @@
+{% extends 'administrador/index.html'%}
+
+{% block content %}
+  <p style="text-align: left;">
+    <a class="btn btn-primary" href="{% url 'administrador:grupo_crear' %}">Nuevo Grupo</a>
+  </p>
+
+  <h2>LISTA DE GRUPOS</h2>
+
+  <table class="table table-striped table-hover ">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Institución</td>
+        <td>Psicologo encargado</td>
+        <td>Jornada</td>
+        <td>Grado</td>
+        <td colspan="2">Acciones</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% if object_list %}
+      {% for grupo in object_list %}
+      <tr>
+        <td>{{ grupo.id }}</td>
+        <td>{{ grupo.institucion }}</td>
+        <td>{{ grupo.psicologo }}</td>
+        <td>{{ grupo.jornada }}</td>
+        <td>{{ grupo.nombre_grado }}</td>
+        <td>
+          <a class="btn btn-primary" href="#">Editar</a>
+        </td>
+        <td>
+          <a class="btn btn-danger" href="#">Eliminar</a>
+        </td>
+      </tr>
+      {% endfor %}
+
+      {% else %}
+      <h3>NO HAY REGISTROS DE GRUPOS</h3>
+
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

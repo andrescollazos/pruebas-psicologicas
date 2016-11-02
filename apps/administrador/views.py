@@ -41,12 +41,25 @@ class InstitucionList(ListView):
     model = Institucion
     template_name = 'administrador/instituciones_list.html'
 
+# Modelo Grupo
+class GrupoList(ListView):
+    model = Grupo
+    template_name = 'administrador/grupo_list.html'
+
 # VISTAS RELACIONADAS A LA CREACION DE REGISTROS
+# Modelo Institucion
 class InstitucionCrear(CreateView):
     model = Institucion
     template_name = 'administrador/instituciones_form.html'
     form_class = InstitucionForm
     success_url = reverse_lazy('administrador:instituciones_listar')
+
+# Modelo Grupo
+class GrupoCrear(CreateView):
+    model = Grupo
+    template_name = 'administrador/grupo_form.html'
+    form_class = GrupoForm
+    success_url = reverse_lazy('administrador:grupo_listar')
 
 # Modelo Psicologo
 class PsicologoCrear(CreateView):

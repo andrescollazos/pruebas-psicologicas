@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from __future__ import unicode_literals
 
 from django.db import models
@@ -70,11 +72,12 @@ class Grupo(models.Model):
     psicologo = models.ForeignKey(Psicologo, on_delete=models.CASCADE) # Un psicologo puede tener varios grupos
     institucion = models.ForeignKey(Institucion, on_delete = models.CASCADE)
     JORNADA = (
-            ('JM', 'JornadaManana'),
-            ('JT', 'JornadaTarde'),
-            ('JE', 'JornadaEspecial')
+            ('JM', 'Jornada Mañana'),
+            ('JT', 'Jornada Tarde'),
+            ('JE', 'Jornada Especial')
             )
     jornada = models.CharField(max_length = 2, choices = JORNADA)
+    nombre_grado = models.CharField(max_length = 30, null = True)
 
 # CLASE ESTUDIANTE
 class Estudiante(models.Model):

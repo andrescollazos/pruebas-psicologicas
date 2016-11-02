@@ -97,6 +97,23 @@ class InstitucionForm(forms.ModelForm):
             'direccion': 'Direccion',
         }
 
+# FORMULARIO PARA LA CREACION DEL OBJETO GRUPO
+class GrupoForm(forms.ModelForm):
+    class Meta:
+        model = Grupo
+        fields = [
+            'psicologo',
+            'institucion',
+            'jornada',
+            'nombre_grado',
+        ]
+        labels = {
+            'psicologo' : 'Psicologo encargado',
+            'institucion' : 'Institucion Educativa',
+            'jornada': 'Jornada escolar',
+            'nombre_grado' : 'Grado'
+        }
+
 # FORMULARIOS PARA LA MODIFICACION DE PROFILES (YA QUE NO SE REQUIEREN TODOS LOS CAMPOS)
 
 # Model User
