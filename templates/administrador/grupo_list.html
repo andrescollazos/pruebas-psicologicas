@@ -29,7 +29,7 @@
         <td>{{ grupo.jornada }}</td>
         <td>{{ grupo.nombre_grado }}</td>
         <td>
-          <a class="btn btn-primary" href="#">Editar</a>
+          <a class="btn btn-primary" href="{% url 'administrador:grupo_editar' grupo.pk %}">Editar</a>
         </td>
         <td>
           <a class="btn btn-danger" href="#">Eliminar</a>

@@ -243,6 +243,13 @@ class InstitucionEditar(UpdateView):
     form_class = InstitucionEditarForm
     success_url = reverse_lazy('administrador:instituciones_listar')
 
+# Modelo Grupo
+class GrupoEditar(UpdateView):
+    model = Grupo
+    template_name = 'administrador/grupo_editar_form.html'
+    form_class = GrupoEditarForm
+    success_url = reverse_lazy('administrador:grupo_listar')
+
 # VIEWS RELACIONADAS A LA ELIMINACION DE REGISTROS
 
 # Modelo Psicologo

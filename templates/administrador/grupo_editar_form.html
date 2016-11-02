@@ -1,0 +1,50 @@
+{% extends 'administrador/index.html'%}
+
+{% block content %}
+<h3>Editar campos</h3>
+
+<form method="post">
+  {% csrf_token %}
+
+<div class="form-horizontal">
+  <fieldset>
+
+    <div class="form-group">
+      <label for="{{form.institucion.name}}" class="col-lg-5 control-label">{{form.institucion.label}}</label>
+      <div class="col-lg-2">
+        {{form.institucion}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{form.psicologo.name}}" class="col-lg-5 control-label">{{form.psicologo.label}}</label>
+      <div class="col-lg-2">
+        {{form.psicologo}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{form.jornada.name}}" class="col-lg-5 control-label">{{form.jornada.label}}</label>
+      <div class="col-lg-1">
+      {{form.jornada}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{form.nombre_grado.name}}" class="col-lg-5 control-label">{{form.nombre_grado.label}}</label>
+      <div class="col-lg-2">
+      {{form.nombre_grado}}
+      </div>
+    </div>
+
+  </fieldset>
+</div>
+
+  <div class="form-group">
+    <div class="col-lg-8 col-lg-offset-2">
+      <button type="reset" class="btn btn-default">Resetar</button>
+      <button type="submit" class="btn btn-primary">Crear</button>
+    </div>
+  </div>
+</form>
+{% endblock %}

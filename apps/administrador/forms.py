@@ -158,6 +158,23 @@ class InstitucionEditarForm(forms.ModelForm):
             'direccion': 'Direccion',
         }
 
+# Modelo Grupo
+class GrupoEditarForm(forms.ModelForm):
+    class Meta:
+        model = Grupo
+        fields = [
+            'psicologo',
+            'institucion',
+            'jornada',
+            'nombre_grado',
+        ]
+        labels = {
+            'psicologo' : 'Psicologo encargado',
+            'institucion' : 'Institucion Educativa',
+            'jornada': 'Jornada escolar',
+            'nombre_grado' : 'Grado'
+        }
+
 # Modelo Psicologo
 class PsicologoEditarForm(forms.ModelForm):
     class Meta:
