@@ -100,3 +100,18 @@ class Estudiante(models.Model):
 
     def __str__(self):
         return self.user.first_name+" "+self.user.last_name
+
+# CLASE TEST (Tipos de test)
+class Test(models.Model):
+    descripcion = models.CharField(max_length = 40, unique = True)
+
+# CLASE TEST ASIGNADO:
+class TestAsignado(models.Model):
+    estudiante = models.ForeignKey(Estudiante, on_delete = models.CASCADE)
+    test = models.ForeignKey(Test, on_delete = models.CASCADE)
+    #respuestas = models.ForeignKey(Respuestas, on_delete = models.CASCADE)
+
+# CLASE PREGUNTAS
+class Pregunta(models.Model):
+    pregunta = models.TextField()
+    test = models.ForeignKey(Test, on_delete = models.CASCADE)

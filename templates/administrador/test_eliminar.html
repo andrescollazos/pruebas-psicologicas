@@ -1,0 +1,18 @@
+{% extends 'administrador/index.html'%}
+
+
+{% block content %}
+<h1>PRECAUCIÓN: ELIMINADO TEST</h1>
+<form method="post">
+  {% csrf_token %}
+  <h3>¿Desea Eliminar el registro del test de {{ test.descripcion }}?</h3>
+
+  <button class="btn btn-danger" type="submit">SÍ, eliminar</button>
+  <a class="btn btn-default" href="{% url 'administrador:test_listar' %}">Cancelar</a>
+
+</form>
+
+<br>
+Nota: Se guardará un registro indicando quien fue el administrador que elimino el test
+
+{% endblock %}

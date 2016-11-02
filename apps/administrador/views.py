@@ -25,7 +25,7 @@ def index_administrador(request):
 # VIEWS CORRESPONDIENTES AL LISTADO DE MODELOS:
 
 # Modelo estudiante
-#@permission_required('administrador.administrar', login_url = '/accounts/login/')
+#@permission_required('administradvalueor.administrar', login_url = '/accounts/login/')
 class EstudianteList(ListView):
     model = Estudiante
     template_name = 'administrador/estudiante_list.html'
@@ -45,6 +45,11 @@ class InstitucionList(ListView):
 class GrupoList(ListView):
     model = Grupo
     template_name = 'administrador/grupo_list.html'
+
+# Modelo Test
+class TestList(ListView):
+    model = Test
+    template_name = 'administrador/test_list.html'
 
 # VISTAS RELACIONADAS A LA CREACION DE REGISTROS
 # Modelo Institucion
@@ -132,6 +137,13 @@ class EstudianteCrear(CreateView):
             return HttpResponseRedirect(self.get_success_url())
         else:
             return self.render_to_response(self.get_context_data(form = form, form2 = form2))
+
+# Modelo Test
+class TestCrear(CreateView):
+    model = Test
+    template_name = 'administrador/test_form.html'
+    form_class = TestForm
+    success_url = reverse_lazy('administrador:test_listar')
 
 # VIEWS RELACIONADAS A LA EDICION DE LOS REGISTROS
 # Modelo User
@@ -250,6 +262,13 @@ class GrupoEditar(UpdateView):
     form_class = GrupoEditarForm
     success_url = reverse_lazy('administrador:grupo_listar')
 
+# Modelo Test
+class TestEditar(UpdateView):
+    model = Test
+    template_name = 'administrador/test_editar_form.html'
+    form_class = TestForm
+    success_url = reverse_lazy('administrador:test_listar')
+
 # VIEWS RELACIONADAS A LA ELIMINACION DE REGISTROS
 
 # Modelo Psicologo
@@ -291,3 +310,12 @@ def GrupoEliminar(request, pk):
         grupo.delete()
         return HttpResponseRedirect(reverse_lazy('administrador:grupo_listar'))
     return render(request, 'administrador/grupo_eliminar.html', {'grupo': grupo})
+
+# Modelo Test
+@permission_required('administrador.administrar', login_url = '/accounts/login/')
+def TestEliminar(request, pk):
+    test = Test.objects.get(id = pk)
+    if request.method == 'POST':
+        test.delete()
+        return HttpResponseRedirect(reverse_lazy('administrador:test_listar'))
+    return render(request, 'administrador/test_eliminar.html', {'test': test})

@@ -11,7 +11,6 @@
     <thead>
       <tr>
         <td>#</td>
-        <td>Username</td>
         <td>Grupo</td>
         <td>Institucion</td>
         <td>Email</td>
@@ -30,7 +29,6 @@
       {% for estudiante in object_list %}
       <tr>
         <td>{{ estudiante.user.id }}</td>
-        <td>{{ estudiante.user.username }}</td>
         <td>{{ estudiante.grupo.nombre_grado }}</td>
         <td>{{ estudiante.grupo.institucion }}</td>
         <td>{{ estudiante.user.email }}</td>

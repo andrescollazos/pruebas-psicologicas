@@ -114,6 +114,17 @@ class GrupoForm(forms.ModelForm):
             'nombre_grado' : 'Grado'
         }
 
+# FORMULARIO PARA LA CREACION DEL OBJETO GRUPO
+class TestForm(forms.ModelForm):
+    class Meta:
+        model = Test
+        fields = [
+            'descripcion',
+        ]
+        labels = {
+            'descripcion' : 'Descripción de la evaluación',
+        }
+
 # FORMULARIOS PARA LA MODIFICACION DE PROFILES (YA QUE NO SE REQUIEREN TODOS LOS CAMPOS)
 
 # Model User
