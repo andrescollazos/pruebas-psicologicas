@@ -32,7 +32,7 @@
           <a class="btn btn-primary" href="{% url 'administrador:grupo_editar' grupo.pk %}">Editar</a>
         </td>
         <td>
-          <a class="btn btn-danger" href="#">Eliminar</a>
+          <a class="btn btn-danger" href="{% url 'administrador:grupo_eliminar' grupo.pk %}">Eliminar</a>
         </td>
       </tr>
       {% endfor %}

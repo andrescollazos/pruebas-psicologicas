@@ -36,4 +36,6 @@ urlpatterns = [
         name = 'estudiante_eliminar'),
     url(r'^eliminar/instituciones/(?P<pk>\d+)$', permission_required('administrador.administrar', login_url = '/accounts/login/')(InstitucionEliminar),
         name = 'instituciones_eliminar'),
+    url(r'^eliminar/grupo/(?P<pk>\d+)$', permission_required('administrador.administrar', login_url = '/accounts/login/')(GrupoEliminar),
+        name = 'grupo_eliminar'),
 ]

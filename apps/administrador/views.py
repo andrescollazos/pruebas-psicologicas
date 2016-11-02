@@ -283,6 +283,11 @@ def InstitucionEliminar(request, pk):
         return HttpResponseRedirect(reverse_lazy('administrador:instituciones_listar'))
     return render(request, 'administrador/instituciones_eliminar.html', {'institucion': institucion})
 
-# NO SE HARA USO DE LA CLASE DeleteView YA QUE SOLO QUEEREMOS HACER UN BORRADO LOGICO:
-# SE ELIMINA DE LA TABLA DE Profile, PERO NO DE LA TABLA DE User, EN DICHA TABLA SOLO
-# SE PONE COMO INACTIVA LA CUENTA
+# Modelo Grupo
+@permission_required('administrador.administrar', login_url = '/accounts/login/')
+def GrupoEliminar(request, pk):
+    grupo = Grupo.objects.get(id = pk)
+    if request.method == 'POST':
+        grupo.delete()
+        return HttpResponseRedirect(reverse_lazy('administrador:grupo_listar'))
+    return render(request, 'administrador/grupo_eliminar.html', {'grupo': grupo})
