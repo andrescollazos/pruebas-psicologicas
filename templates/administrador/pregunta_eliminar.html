@@ -1,0 +1,18 @@
+{% extends 'administrador/index.html'%}
+
+
+{% block content %}
+<h1>PRECAUCIÓN: ELIMINADO PREGUNTA</h1>
+<form method="post">
+  {% csrf_token %}
+  <h3>¿Desea Eliminar el registro Pregunta "{{ pregunta.pregunta }}" del test {{ test }}?</h3>
+
+  <button class="btn btn-danger" type="submit">SÍ, eliminar</button>
+  <a class="btn btn-default" href="{% url 'administrador:pregunta_listar' test %}">Cancelar</a>
+
+</form>
+
+<br>
+Nota: Se guardará un registro indicando quien fue el administrador que elimino la pregunta
+
+{% endblock %}

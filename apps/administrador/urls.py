@@ -55,4 +55,6 @@ urlpatterns = [
         name = 'grupo_eliminar'),
     url(r'^eliminar/test/(?P<pk>\d+)$', permission_required('administrador.administrar', login_url = '/accounts/login/')(TestEliminar),
         name = 'test_eliminar'),
+    url(r'^eliminar/pregunta/(?P<pre_id>\d+)/(?P<test_id>\d+)$', permission_required('administrador.administrar', login_url = '/accounts/login/')(PreguntaEliminar),
+        name = 'pregunta_eliminar'),
 ]

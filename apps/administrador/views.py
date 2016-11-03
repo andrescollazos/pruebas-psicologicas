@@ -352,3 +352,12 @@ def TestEliminar(request, pk):
         test.delete()
         return HttpResponseRedirect(reverse_lazy('administrador:test_listar'))
     return render(request, 'administrador/test_eliminar.html', {'test': test})
+
+# Modelo Pregunta
+@permission_required('administrador.administrar', login_url = '/accounts/login/')
+def PreguntaEliminar(request, pre_id, test_id):
+    pregunta = Pregunta.objects.get(id = pre_id)
+    if request.method == 'POST':
+        pregunta.delete()
+        return PreguntaList(request, test_id)
+    return render(request, 'administrador/pregunta_eliminar.html', {'pregunta': pregunta, 'test':test_id})
