@@ -26,7 +26,7 @@
           <a class="btn btn-primary" href="{% url 'administrador:test_editar' test.pk %}">Editar</a>
         </td>
         <td>
-          <a class="btn btn-info" href="#">Añadir Preguntas</a>
+          <a class="btn btn-info" href="{% url 'administrador:pregunta_listar' test.pk %}">Preguntas</a>
         </td>
         <td>
           <a class="btn btn-danger" href="{% url 'administrador:test_eliminar' test.pk %}">Eliminar</a>

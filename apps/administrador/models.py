@@ -105,6 +105,9 @@ class Estudiante(models.Model):
 class Test(models.Model):
     descripcion = models.CharField(max_length = 40, unique = True)
 
+    def __str__(self):
+        return self.descripcion
+        
 # CLASE TEST ASIGNADO:
 class TestAsignado(models.Model):
     estudiante = models.ForeignKey(Estudiante, on_delete = models.CASCADE)
@@ -114,4 +117,8 @@ class TestAsignado(models.Model):
 # CLASE PREGUNTAS
 class Pregunta(models.Model):
     pregunta = models.TextField()
+    numero = models.CharField(max_length = 10, null = True)
     test = models.ForeignKey(Test, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return self.pregunta+' '+str(self.test.id)

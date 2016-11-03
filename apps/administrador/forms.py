@@ -125,6 +125,22 @@ class TestForm(forms.ModelForm):
             'descripcion' : 'Descripción de la evaluación',
         }
 
+# FORMULARIO PARA LA CREACION DEL OBJETO PREGUNTA
+class PreguntaForm(forms.ModelForm):
+    class Meta:
+        model = Pregunta
+        fields = [
+            'numero',
+            'pregunta',
+            'test',
+
+        ]
+        labels = {
+            'numero' : 'Numero pregunta',
+            'pregunta' : 'Agregar pregunta',
+            'test': 'En el Test',
+        }
+
 # FORMULARIOS PARA LA MODIFICACION DE PROFILES (YA QUE NO SE REQUIEREN TODOS LOS CAMPOS)
 
 # Model User

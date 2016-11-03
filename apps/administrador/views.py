@@ -51,6 +51,13 @@ class TestList(ListView):
     model = Test
     template_name = 'administrador/test_list.html'
 
+# Modelo Pregunta
+@permission_required('administrador.administrar', login_url = '/accounts/login/')
+def PreguntaList(request, test_id):
+    pregunta_list = Pregunta.objects.order_by('numero').filter(test = test_id)
+    context = {'pregunta_list':pregunta_list, 'test':test_id}
+    return render(request, 'administrador/pregunta_list.html', context)
+
 # VISTAS RELACIONADAS A LA CREACION DE REGISTROS
 # Modelo Institucion
 class InstitucionCrear(CreateView):
@@ -144,6 +151,19 @@ class TestCrear(CreateView):
     template_name = 'administrador/test_form.html'
     form_class = TestForm
     success_url = reverse_lazy('administrador:test_listar')
+
+# Modelo Pregunta
+@permission_required('administrador.administrar', login_url = '/accounts/login/')
+def PreguntaCrear(request, test_id):
+    if request.method == 'POST':
+        form = PreguntaForm(request.POST)
+        print "EL FORMULARIO LLENADO ES: \n ", form
+        if form.is_valid():
+            form.save()
+            return PreguntaList(request, test_id)
+    else:
+        form = PreguntaForm()
+    return render(request, 'administrador/pregunta_form.html', {'form':form , 'test':test_id})
 
 # VIEWS RELACIONADAS A LA EDICION DE LOS REGISTROS
 # Modelo User
