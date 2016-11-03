@@ -1,0 +1,44 @@
+{% extends 'administrador/index.html'%}
+
+{% block content %}
+<h2>EDITAR UNA PREGUNTA</h2>
+
+<form method="post">
+  {% csrf_token %}
+
+<div class="form-horizontal">
+  <fieldset>
+    <legend>Ingresar datos</legend>
+
+    <div class="form-group">
+      <label for="{{form.pregunta.name}}" class="col-lg-5 control-label">{{form.pregunta.label}}</label>
+      <div class="col-lg-2">
+      {{form.pregunta}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{form.numero.name}}" class="col-lg-5 control-label">{{form.numero.label}}</label>
+      <div class="col-lg-2">
+      {{form.numero}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{form.test.name}}" class="col-lg-5 control-label">{{form.test.label}}</label>
+      <div class="col-lg-1">
+        {{ form.test }}
+      </div>
+    </div>
+
+  </fieldset>
+</div>
+
+  <div class="form-group">
+    <div class="col-lg-8 col-lg-offset-2">
+      <button type="reset" class="btn btn-default">Resetar</button>
+      <button type="submit" class="btn btn-primary">Editar</button>
+    </div>
+  </div>
+</form>
+{% endblock %}

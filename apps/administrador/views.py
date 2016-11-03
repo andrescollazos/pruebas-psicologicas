@@ -3,7 +3,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import permission_required, login_required
 from django.core.urlresolvers import reverse_lazy
@@ -288,6 +288,19 @@ class TestEditar(UpdateView):
     template_name = 'administrador/test_editar_form.html'
     form_class = TestForm
     success_url = reverse_lazy('administrador:test_listar')
+
+# Modelo Pregunta
+@permission_required('administrador.administrar', login_url = '/accounts/login/')
+def PreguntaEditar(request, pre_id, test_id):
+    pregunta = get_object_or_404(Pregunta, pk=pre_id)
+    if request.method == 'POST':
+        form = PreguntaForm(request.POST, instance = pregunta)
+        if form.is_valid():
+            form.save()
+            return PreguntaList(request, test_id)
+    else:
+        form = PreguntaForm(instance = pregunta)
+    return render(request, 'administrador/pregunta_editar_form.html', {'form':form})
 
 # VIEWS RELACIONADAS A LA ELIMINACION DE REGISTROS
 

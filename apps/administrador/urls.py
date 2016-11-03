@@ -18,6 +18,7 @@ urlpatterns = [
         name = 'test_listar'),
     url(r'^listar/preguntas/(?P<test_id>\d+)$', permission_required('administrador.administrar', login_url = '/accounts/login/')(PreguntaList),
         name = 'pregunta_listar'),
+
     url(r'^crear/psicologos$', permission_required('administrador.administrar', login_url = '/accounts/login/')(PsicologoCrear.as_view()),
         name = 'psicologo_crear'),
     url(r'^crear/estudiantes$', permission_required('administrador.administrar', login_url = '/accounts/login/')(EstudianteCrear.as_view()),
@@ -30,6 +31,7 @@ urlpatterns = [
         name = 'test_crear'),
     url(r'^crear/preguntas/(?P<test_id>\d+)$', permission_required('administrador.administrar', login_url = '/accounts/login/')(PreguntaCrear),
         name = 'pregunta_crear'),
+
     url(r'^editar/psicologos/(?P<pk>\d+)$', permission_required('administrador.administrar', login_url = '/accounts/login/')(PsicologoEditar.as_view()),
         name = 'psicologo_editar'),
     url(r'^editar/estudiantes/(?P<pk>\d+)$', permission_required('administrador.administrar', login_url = '/accounts/login/')(EstudianteEditar.as_view()),
@@ -40,6 +42,9 @@ urlpatterns = [
         name = 'grupo_editar'),
     url(r'^editar/test/(?P<pk>\d+)$', permission_required('administrador.administrar', login_url = '/accounts/login/')(TestEditar.as_view()),
         name = 'test_editar'),
+    url(r'^editar/pregunta/(?P<pre_id>\d+)/(?P<test_id>\d+)$', permission_required('administrador.administrar', login_url = '/accounts/login/')(PreguntaEditar),
+        name = 'pregunta_editar'),
+
     url(r'^eliminar/psicologos/(?P<pk>\d+)$', permission_required('administrador.administrar', login_url = '/accounts/login/')(PsicologoEliminar),
         name = 'psicologo_eliminar'),
     url(r'^eliminar/estudiantes/(?P<pk>\d+)$', permission_required('administrador.administrar', login_url = '/accounts/login/')(EstudianteEliminar),
