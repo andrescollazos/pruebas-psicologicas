@@ -3,15 +3,17 @@
 {% block title%}Psicologo{% endblock %}
 
 {% block home %}
-<a class="navbar-brand" href="{% url 'psicologo:index' %}">Inicio</a>
+  <a class="navbar-brand" href="{% url 'psicologo:index' %}">Inicio</a>
 {% endblock %}
 
-{% block navbar %}{% endblock %}
+{% block navbar %}
+  <li><a href="{% url 'psicologo:grupo_listar' user.pk %}">Mis grupos</a></li>
+{% endblock %}
 
 {% block content %}
 <h2> APP DEL PSICOLOGO</h2>
 
-<h4>  Datos del estudiante </h4>
+<h4>  Datos del psicologo </h4>
   Usuario : {{ user.username }}   <br>
   Correo  : {{ user.email}}       <br>
   Nombre  : {{ user.first_name }} <br>

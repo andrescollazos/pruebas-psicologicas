@@ -1,0 +1,38 @@
+{% extends 'psicologo/index.html'%}
+
+{% block content %}
+  <h2>LISTA DE GRUPOS</h2>
+
+  <table class="table table-striped table-hover ">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Institución</td>
+        <td>Jornada</td>
+        <td>Grado</td>
+        <td colspan="2">Acciones</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% if grupos_list %}
+      {% for grupo in grupos_list %}
+      <tr>
+        <td>{{ grupo.id }}</td>
+        <td>{{ grupo.institucion }}</td>
+        <td>{{ grupo.jornada }}</td>
+        <td>{{ grupo.nombre_grado }}</td>
+        <td>
+          <a class="btn btn-info" href="{% url 'psicologo:estudiante_listar' grupo.pk %}">Ver Alumnos</a>
+        </td>
+      </tr>
+      {% endfor %}
+
+      {% else %}
+      <h3>NO HAY REGISTROS DE GRUPOS</h3>
+
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

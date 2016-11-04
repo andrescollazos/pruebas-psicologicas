@@ -107,7 +107,7 @@ class Test(models.Model):
 
     def __str__(self):
         return self.descripcion
-        
+
 # CLASE TEST ASIGNADO:
 class TestAsignado(models.Model):
     estudiante = models.ForeignKey(Estudiante, on_delete = models.CASCADE)
