@@ -31,3 +31,26 @@ def psicologoEstudianteList(request, grupo_id):
     estudiante_list = Estudiante.objects.order_by('docIdentidad').filter(grupo = grupo_id)
     context = {'estudiante_list':estudiante_list, 'grupo':grupo_id}
     return render(request, 'psicologo/estudiante_list.html', context)
+
+# Listar los test que tiene asignado un estudiante
+@permission_required('administrador.soypsicologo', login_url='/accounts/login/')
+def psicologoEstudianteTestList(request, est_id):
+    estudiante = Estudiante.objects.get(docIdentidad = est_id)
+    testAsignado_list = TestAsignado.objects.filter(estudiante = est_id)
+    context = {'testAsignado_list':testAsignado_list, 'estudiante':estudiante}
+    return render(request, 'psicologo/estudiante_test_list.html', context)
+
+# Asignar test a un estudiante
+@permission_required('administrador.soypsicologo', login_url='/accounts/login/')
+def psicologoAsignarTest(request, est_id):
+    estudiante = Estudiante.objects.get(docIdentidad = est_id)
+    if request.method == 'POST':
+        form = TestAsignadoForm(request.POST)
+        print "DATOS INGRESADOS---------->"
+        print form
+        if form.is_valid():
+            form.save()
+            return psicologoEstudianteTestList(request, est_id)
+    else:
+        form = TestAsignadoForm()
+    return render(request, 'psicologo/asignar_test_form.html', {'form':form, 'estudiante':estudiante})

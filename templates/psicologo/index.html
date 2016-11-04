@@ -21,42 +21,5 @@
 <p><a class="btn btn-primary btn-lg" href="{% url 'editar_perfil' user.pk%}">Editar</a></p>
 <p><a class="btn btn-primary btn-lg" href="{% url 'editar_password'%}">Editar Contraseña</a></p>
 
-<!--
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <td>Id Prueba</td>
-      <td>Prueba</td>
-      <td>Descripción</td>
-      <td>Nombres de Estudiante</td>
-      <td>Apellidos de Estudiante</td>
-      <td>email</td>
-      <td>Acciones</td>
-    </tr>
-  </thead>
-
-  <tbody>
-    <!--{% if object_list %}
-    {% for estudiante in object_list %}
-    <tr>
-      <td>Id Prueba</td>
-      <td>Prueba</td>
-      <td>Descripción</td>
-      <td>Nombres de Estudiante</td>
-      <td>Apellidos de Estudiante</td>
-      <td>email</td>
-      <td>
-        <a class="btn btn-danger" href="#">Diagnosticar</a>
-      </td>
-    </tr>
-    <!--{% endfor %}
-
-    {% else %}
-    <h1>NO HAY REGISTROS DE ESTUDIANTES</h1>
-
-    {% endif %}
-  </tbody>
-</table>
--->
 <a href="javascript:window.history.go(-1);">Pagina de Inicio</a>
 {% endblock %}

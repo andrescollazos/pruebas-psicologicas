@@ -32,7 +32,7 @@
         <td>{{ estudiante.direccion }}</td>
         <td>{{ estudiante.telefono }}</td>
         <td>
-          <a class="btn btn-success" href="#">Asignar Tests</a>
+          <a class="btn btn-primary" href="{% url 'psicologo:estudiante_test_listar' estudiante.pk %}">Ver Tests Asignados</a>
         </td>
       </tr>
       {% endfor %}
